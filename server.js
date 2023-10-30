@@ -31,7 +31,7 @@ io.on("connection", (socket) => {
 
     // Welcome current User
     socket.emit("welcomeMessage", {
-      message: `Welcome ${user.name}`,
+      message: `Welcome ${user.name} to ChatApp`,
       user: "Bot",
       time: moment().format("h:mm a"),
     });
