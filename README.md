@@ -14,6 +14,6 @@ This is a Backend express server which serves the Chat React App(https://github.
 - Run npm run start to start the express server on localhost://5600
 
 ## Web service hosted on Render
-The Server is hosted on Render(https://chat-server-qgnm.onrender.com/)
+The Server is hosted as web service on Render(https://chat-server-qgnm.onrender.com/)
 
 
