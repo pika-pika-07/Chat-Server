@@ -13,10 +13,14 @@ const {
 const moment = require("moment");
 
 const app = express();
-app.use(cors({ origin: "http:localhost:3000" }));
+const isDev = app.settings.env === "development";
+const URL = isDev
+  ? "http:localhost:3000"
+  : "https://my-chat-board.netlify.app/";
+app.use(cors({ origin: URL }));
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
-  cors: "http:localhost:3000",
+  cors: URL,
 });
 
 io.on("connection", (socket) => {
