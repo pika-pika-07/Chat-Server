@@ -6,7 +6,6 @@ const {
   userJoin,
   getRoomUsers,
   getCurrentUser,
-  users,
   fetchUsersWithSocketId,
   toggleUserStatus,
 } = require("./utils/helpers");
@@ -51,19 +50,17 @@ io.on("connection", (socket) => {
   });
 
   socket.on("sendChatMessage", (message) => {
-    console.log("sockerif is", socket.id);
     const currentUser = getCurrentUser(socket.id);
     io.to(currentUser?.room).emit("recieveChatMessage", {
       message: message,
       user: currentUser?.name,
       time: moment().format("h:mm a"),
     });
-    // io.emit("message", "A user has left the chat");
   });
 
   socket.on("disconnect", () => {
     let loggedoutuser = fetchUsersWithSocketId(socket.id);
-    console.log("hereee", loggedoutuser);
+
     io.to(loggedoutuser[0]?.room).emit("recieveChatMessage", {
       message: `${loggedoutuser[0]?.name} has left the chat`,
       time: moment().format("h:mm a"),
@@ -81,7 +78,6 @@ io.on("connection", (socket) => {
       room: user.room,
       users: getRoomUsers(user.room),
     });
-    // io.emit("message", "A user has left the chat");
   });
 
   socket.on("online", (user) => {
@@ -90,7 +86,6 @@ io.on("connection", (socket) => {
       room: user.room,
       users: getRoomUsers(user.room),
     });
-    // io.emit("message", "A user has left the chat");
   });
 });
 

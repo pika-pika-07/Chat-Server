@@ -27,8 +27,6 @@ function getCurrentUser(id) {
 function fetchUsersWithSocketId(id) {
   let x = [];
   users.forEach((user, index) => {
-    console.log("user to delete", user);
-    console.log("socket id", id);
     if (user.id === id) {
       x.push(user);
       users.splice(index, 1);
@@ -50,7 +48,6 @@ module.exports = {
   userJoin,
   getRoomUsers,
   getCurrentUser,
-  users,
   fetchUsersWithSocketId,
   toggleUserStatus,
 };
